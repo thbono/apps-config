@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:8761}
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false    
+    serviceUrl:
+      defaultZone: http://${EUREKA_USER:guest}:${EUREKA_PASSWORD:guest}@${EUREKA_HOSTNAME:localhost}:${PORT:8761}/eureka/
+  server:
+    enableSelfPreservation: false
+    waitTimeInMsWhenSyncEmpty: 0
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+  datacenter: ${EUREKA_HOSTNAME:localhost}
+  environment: ${SPRING_PROFILES_ACTIVE:default}
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: ${EUREKA_USER:guest}
+    password: ${EUREKA_PASSWORD:guest}

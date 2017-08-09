@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8989}
+
+management:
+  port: ${MANAGEMENT_PORT:8990}
+
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    virtual-host: ${RABBITMQ_HOST:localhost}

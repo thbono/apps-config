@@ -1,0 +1,78 @@
+server:
+  port: ${PORT:8765}
+
+zuul:
+  ignoredServices: "*"  
+  ignoredHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Headers,Access-Control-Max-Age,Access-Control-Allow-Credentials
+  sensitiveHeaders: ""
+  addProxyHeaders: false  
+  routes:
+    active-directory:
+      path: /active-directory/**
+      stripPrefix: false
+      serviceId: active-directory
+    sms:
+      path: /sms/**
+      stripPrefix: false
+      serviceId: sms
+    dimensions:
+      path: /dimensions/**
+      stripPrefix: false
+      serviceId: dimensions
+    service-desk:
+      path: /service-desk/**
+      stripPrefix: false
+      serviceId: service-desk
+    authentication:
+      path: /authentication/**      
+      serviceId: authentication
+    authorization:
+      path: /authorization/**
+      stripPrefix: false
+      serviceId: authorization
+    security-admin:
+      path: /security-admin/**
+      stripPrefix: false
+      serviceId: security-admin
+    mesa-precificadora:
+      path: /mesa-precificadora/**
+      serviceId: mesa-precificadora
+    central-negocios:
+      path: /central-negocios/**
+      serviceId: central-negocios
+    central-negocios-retaguarda:
+      path: /central-negocios-retaguarda/**
+      serviceId: central-negocios-retaguarda    
+    grupo-economico:
+      path: /grupo-economico/**
+      serviceId: grupo-economico
+    cobranca-administrativa:
+      path: /cobranca-administrativa/**
+      serviceId: cobranca-administrativa      
+    sicoob-aprender:
+      path: /sicoob-aprender/**
+      serviceId: sicoob-aprender
+    task-ti-api:
+      path: /task-ti-api/**
+      serviceId: task-ti-api
+    consulta-cooperado:
+      path: /consulta-cooperado/**
+      serviceId: consulta-cooperado
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 15000
+
+eureka:
+  instance:
+    preferIpAddress: true  
+    leaseRenewalIntervalInSeconds: 15    
+    leaseExpirationDurationInSeconds: 15
+  client:    
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://guest:guest@localhost:8761/eureka/}
